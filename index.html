@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Omar Alshehri | Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- navigation -->
+    <nav>
+        <h2>Omar Alshehri</h2>
+
+        <div class="nav-actions">
+            <button id="themeToggleBtn" type="button" class="btn-small">🌙 </button>
+        </div>
+
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#extras">Extras</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- about -->
+    <section id="about">
+        <h1>About Me</h1>
+        <p>
+            Software Engineering student at King Fahd University of Petroleum & Minerals (KFUPM)
+            with an interest in web design and front-end development.
+        </p>
+        <p>
+            I work on personal web design and development projects, building clean and responsive websites
+            using HTML, CSS, and WordPress as a content management platform.
+        </p>
+
+    </section>
+
+    <!-- projects -->
+    <section id="projects">
+        <h1>Projects</h1>
+
+        <div class="info-box">
+            <h3>How to use this section</h3>
+            <p>Use the search box below to filter the project cards while typing.</p>
+
+            <label for="projectSearch"><strong>Search Projects</strong></label>
+            <input id="projectSearch" type="text" placeholder="Type to filter projects..." />
+            <p class="muted">Example: web, therapy, wordpress</p>
+        </div>
+
+        <p id="projectsEmptyState" class="muted hidden">No projects found.</p>
+
+        <div class="projects-container" id="projectsContainer">
+
+            <div class="project-card fade-in" data-title="Velonweb Web Design Development Wordpress Startup Business">
+                <img src="assets/images/velonweb-logo.png" alt="Velonweb logo" class="project-logo">
+
+                <h3>Velonweb – Web Design & Development</h3>
+                <p>
+                    Personal web design and development project focused on building clean, responsive WordPress websites
+                    for startups and small businesses.
+                </p>
+                <a href="https://velonweb.com/en/" target="_blank" rel="noopener noreferrer">
+                    <button type="button">Visit Website</button>
+                </a>
+            </div>
+
+            <div class="project-card fade-in" data-title="Shumos Care Physical Therapy Center Taif Website Responsive Design">
+                <h3>Shumos Care Physical Therapy Center</h3>
+                <p>
+                    Designed and developed the official website for a physical therapy center in Taif,
+                    focused on clear service presentation, user-friendly structure, and responsive design.
+                </p>
+                <a href="https://shumca.com/en/" target="_blank" rel="noopener noreferrer">
+                    <button type="button">Visit Website</button>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+<!-- SWE News -->
+<section id="extras">
+    <h1>Software Engineering News</h1>
+
+    <div class="project-card">
+        <p>Click to get a tech article.</p>
+
+        <button id="newsBtn" type="button">Get News</button>
+
+        <p id="newsLoading" class="muted hidden">Loading...</p>
+        <p id="newsError" class="error hidden"></p>
+        <div id="newsResult" class="fade-in"></div>
+    </div>
+</section>
+
+
+    <!--contact -->
+    <section id="contact">
+        <h1>Contact Me</h1>
+
+        <div class="info-box">
+            <h3>How to use this form</h3>
+            <p>Fill in your name, email, and message. If something is missing or invalid, an error message will appear.</p>
+        </div>
+
+        <form id="contactForm" novalidate>
+            <label for="nameInput">Name</label>
+            <input id="nameInput" type="text" placeholder="Your Name" required>
+            <p id="nameError" class="error hidden"></p>
+
+            <label for="emailInput">Email</label>
+            <input id="emailInput" type="email" placeholder="Your Email" required>
+            <p id="emailError" class="error hidden"></p>
+
+            <label for="messageInput">Message</label>
+            <textarea id="messageInput" placeholder="Your Message" required></textarea>
+            <p id="messageError" class="error hidden"></p>
+
+            <button type="submit">Send</button>
+            <p id="formSuccess" class="success hidden"> Message sent successfully</p>
+        </form>
+    </section>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
