@@ -28,7 +28,6 @@ function setActiveLink() {
 window.addEventListener("scroll", setActiveLink);
 setActiveLink();
 
-
 // Change theme
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 
@@ -52,7 +51,6 @@ if (themeToggleBtn) {
     applyTheme(nextTheme);
   });
 }
-
 
 // Project filtering + sorting
 const projectSearch = document.getElementById("projectSearch");
@@ -81,6 +79,7 @@ function updateProjects() {
       currentFilter === "all" || category.includes(currentFilter);
 
     const shouldShow = matchesSearch && matchesFilter;
+
     card.style.display = shouldShow ? "" : "none";
 
     if (shouldShow) visibleCount++;
@@ -130,7 +129,6 @@ if (filterButtons.length) {
 
 updateProjects();
 
-
 // API fetch
 const newsBtn = document.getElementById("newsBtn");
 const newsLoading = document.getElementById("newsLoading");
@@ -138,6 +136,8 @@ const newsError = document.getElementById("newsError");
 const newsResult = document.getElementById("newsResult");
 
 async function fetchNews() {
+  if (!newsBtn || !newsLoading || !newsError || !newsResult) return;
+
   newsError.classList.add("hidden");
   newsError.textContent = "";
   newsResult.innerHTML = "";
@@ -180,7 +180,6 @@ async function fetchNews() {
 if (newsBtn) {
   newsBtn.addEventListener("click", fetchNews);
 }
-
 
 // Contact form validation
 const contactForm = document.getElementById("contactForm");

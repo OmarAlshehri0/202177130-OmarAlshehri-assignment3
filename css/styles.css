@@ -15,13 +15,13 @@ body {
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-
 section {
   padding: 60px 20px;
 }
 
 #about,
 #projects,
+#skills,
 #extras,
 #contact {
   max-width: 900px;
@@ -59,7 +59,6 @@ nav ul {
   padding: 0;
   margin: 10px 0 0 0;
 }
-
 
 nav a {
   color: white;
@@ -107,7 +106,6 @@ nav a.active {
   gap: 20px;
 }
 
-
 .project-card {
   background: white;
   padding: 20px;
@@ -134,7 +132,6 @@ nav a.active {
   border-radius: 8px;
 }
 
-
 .info-box {
   background: #fff;
   border-radius: 10px;
@@ -155,13 +152,13 @@ form {
 }
 
 input,
-textarea {
+textarea,
+select {
   padding: 10px;
   border-radius: 8px;
   border: 1px solid #ccc;
   font-size: 1rem;
 }
-
 
 textarea {
   min-height: 120px;
@@ -178,7 +175,6 @@ button {
   font-size: 1rem;
   transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
 }
-
 
 button:hover {
   background: #333;
@@ -217,6 +213,67 @@ button:hover {
   }
 }
 
+.filter-actions {
+  margin-top: 14px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.filter-btn {
+  padding: 10px 14px;
+}
+
+.active-filter {
+  background: #444;
+}
+
+.sort-box {
+  margin-top: 14px;
+}
+
+/* Skills */
+.skills-slider {
+  overflow: hidden;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eaeaea;
+  padding: 18px 0;
+}
+
+.skills-track {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: max-content;
+  animation: skillsScroll 18s linear infinite;
+}
+
+.skill-pill {
+  background: #111;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: bold;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+@keyframes skillsScroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (min-width: 768px) {
   .projects-container {
     flex-direction: row;
@@ -245,22 +302,20 @@ body.dark {
   color: #f2f2f2;
 }
 
-
 body.dark .project-card,
-body.dark .info-box {
+body.dark .info-box,
+body.dark .skills-slider {
   background: #171a21;
   border-color: #2a2f3a;
 }
 
 body.dark input,
-body.dark textarea {
+body.dark textarea,
+body.dark select {
   background: #0f1115;
   color: #f2f2f2;
-  
   border-color: #2a2f3a;
 }
-
-
 
 body.dark .muted {
   color: #b9c0d0;
@@ -274,8 +329,12 @@ body.dark button:hover {
   background: #3a4152;
 }
 
-
 body.dark .btn-small {
   background: #2a2f3a;
   color: white;
+}
+
+body.dark .skill-pill {
+  background: #2a2f3a;
+  color: #fff;
 }
