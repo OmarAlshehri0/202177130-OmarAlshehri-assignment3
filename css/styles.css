@@ -22,7 +22,7 @@ section {
 #about,
 #projects,
 #skills,
-#extras,
+#inspiration,
 #contact {
   max-width: 900px;
   margin: 0 auto;
@@ -106,12 +106,17 @@ nav a.active {
   gap: 20px;
 }
 
-.project-card {
+.project-card,
+.info-box,
+.inspiration-card {
   background: white;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 15px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -120,7 +125,8 @@ nav a.active {
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }
 
-.project-card h3 {
+.project-card h3,
+.inspiration-card h3 {
   margin-top: 0;
 }
 
@@ -130,14 +136,6 @@ nav a.active {
   display: block;
   margin-bottom: 12px;
   border-radius: 8px;
-}
-
-.info-box {
-  background: #fff;
-  border-radius: 10px;
-  padding: 14px;
-  margin-bottom: 16px;
-  border: 1px solid #eaeaea;
 }
 
 .muted {
@@ -221,6 +219,7 @@ button:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+
   margin-top: 10px;
 }
 
@@ -241,8 +240,10 @@ button:hover {
   overflow: hidden;
   width: 100%;
   background: #fff;
+
   border-radius: 10px;
   border: 1px solid #eaeaea;
+  
   padding: 18px 0;
 }
 
@@ -274,6 +275,30 @@ button:hover {
   }
 }
 
+/* Inspiration */
+.inspiration-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.inspiration-card {
+  overflow: hidden;
+}
+
+.inspiration-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.inspiration-meta {
+  font-size: 0.95rem;
+}
+
 @media (min-width: 768px) {
   .projects-container {
     flex-direction: row;
@@ -282,6 +307,10 @@ button:hover {
   .project-card {
     flex: 1;
     margin-bottom: 0;
+  }
+
+  .inspiration-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -294,17 +323,21 @@ button:hover {
   nav ul {
     flex-direction: column;
     gap: 10px;
+
   }
 }
 
 body.dark {
   background: #0f1115;
   color: #f2f2f2;
+
 }
 
 body.dark .project-card,
 body.dark .info-box,
-body.dark .skills-slider {
+body.dark .skills-slider,
+
+body.dark .inspiration-card {
   background: #171a21;
   border-color: #2a2f3a;
 }
@@ -315,11 +348,15 @@ body.dark select {
   background: #0f1115;
   color: #f2f2f2;
   border-color: #2a2f3a;
+
 }
 
 body.dark .muted {
   color: #b9c0d0;
+
 }
+
+
 
 body.dark button {
   background: #2a2f3a;
@@ -328,6 +365,7 @@ body.dark button {
 body.dark button:hover {
   background: #3a4152;
 }
+
 
 body.dark .btn-small {
   background: #2a2f3a;

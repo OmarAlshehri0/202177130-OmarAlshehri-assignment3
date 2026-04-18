@@ -34,10 +34,10 @@ const themeToggleBtn = document.getElementById("themeToggleBtn");
 function applyTheme(theme) {
   if (theme === "dark") {
     document.body.classList.add("dark");
-    if (themeToggleBtn) themeToggleBtn.textContent = "☀️ ";
+    if (themeToggleBtn) themeToggleBtn.textContent = "☀️";
   } else {
     document.body.classList.remove("dark");
-    if (themeToggleBtn) themeToggleBtn.textContent = "🌙 ";
+    if (themeToggleBtn) themeToggleBtn.textContent = "🌙";
   }
 }
 
@@ -75,8 +75,7 @@ function updateProjects() {
     const category = (card.getAttribute("data-category") || "").toLowerCase();
 
     const matchesSearch = title.includes(searchTerm);
-    const matchesFilter =
-      currentFilter === "all" || category.includes(currentFilter);
+    const matchesFilter = currentFilter === "all" || category.includes(currentFilter);
 
     const shouldShow = matchesSearch && matchesFilter;
 
@@ -129,56 +128,80 @@ if (filterButtons.length) {
 
 updateProjects();
 
-// API fetch
-const newsBtn = document.getElementById("newsBtn");
-const newsLoading = document.getElementById("newsLoading");
-const newsError = document.getElementById("newsError");
-const newsResult = document.getElementById("newsResult");
+//pexels API 
+const inspirationBtn = document.getElementById("inspirationBtn");
+const inspirationLoading = document.getElementById("inspirationLoading");
+const inspirationError = document.getElementById("inspirationError");
 
-async function fetchNews() {
-  if (!newsBtn || !newsLoading || !newsError || !newsResult) return;
+const inspirationEmpty = document.getElementById("inspirationEmpty");
 
-  newsError.classList.add("hidden");
-  newsError.textContent = "";
-  newsResult.innerHTML = "";
-  newsLoading.classList.remove("hidden");
+const inspirationGrid = document.getElementById("inspirationGrid");
+
+
+
+
+const PEXELS_API_KEY = "Qwl0nGc0mPbfzYVbGBmSFAKC5a1bJg1x7vCjMj6bRz26d3IcaHeLDz3N";
+
+async function loadInspiration() {
+  if (!inspirationBtn || !inspirationLoading || !inspirationError || !inspirationGrid || !inspirationEmpty) {
+    return;
+  }
+
+  inspirationGrid.innerHTML = "";
+  inspirationError.textContent = "";
+  inspirationError.classList.add("hidden");
+  inspirationEmpty.classList.add("hidden");
+
+  inspirationLoading.classList.remove("hidden");
 
   try {
     const response = await fetch(
-      "https://dev.to/api/articles?tags=ai,webdev,javascript,frontend&per_page=20"
+      "https://api.pexels.com/v1/search?query=web%20design&per_page=4",
+      {
+        headers: {
+          Authorization: PEXELS_API_KEY
+        }
+      }
     );
 
     if (!response.ok) {
-      throw new Error("Failed to load insights. Please try again.");
+      throw new Error("Failed to load inspiration images. Please check the API key and try again.");
     }
 
     const data = await response.json();
 
-    if (!data.length) {
-      throw new Error("No insights found at the moment.");
+    if (!data.photos || data.photos.length === 0) {
+      inspirationEmpty.classList.remove("hidden");
+      return;
     }
 
-    const randomIndex = Math.floor(Math.random() * data.length);
-    const article = data[randomIndex];
+    inspirationGrid.innerHTML = data.photos
+      .map((photo) => {
+        return `
+          <div class="inspiration-card fade-in">
+            <img class="inspiration-image" src="${photo.src.large}" alt="${photo.alt || "Design inspiration image"}">
+            <h3>${photo.alt || "Design Inspiration"}</h3>
 
-    newsResult.innerHTML = `
-      <h3>${article.title}</h3>
-      <p class="muted">Author: ${article.user.name}</p>
-      <p class="muted">Tags: ${article.tags}</p>
-      <a href="${article.url}" target="_blank" rel="noopener noreferrer">
-        <button type="button">Read More</button>
-      </a>
-    `;
+            <p class="inspiration-meta">Photographer: ${photo.photographer}</p>
+
+            <a href="${photo.url}" target="_blank" rel="noopener noreferrer">
+              <button type="button">View Source</button>
+            </a>
+          </div>
+        `;
+      })
+      .join("");
   } catch (error) {
-    newsError.textContent = error.message;
-    newsError.classList.remove("hidden");
+    inspirationError.textContent = error.message;
+    inspirationError.classList.remove("hidden");
   } finally {
-    newsLoading.classList.add("hidden");
+    inspirationLoading.classList.add("hidden");
   }
 }
 
-if (newsBtn) {
-  newsBtn.addEventListener("click", fetchNews);
+if (inspirationBtn) {
+  inspirationBtn.addEventListener("click", loadInspiration);
+
 }
 
 // Contact form validation
@@ -187,8 +210,11 @@ const nameInput = document.getElementById("nameInput");
 const emailInput = document.getElementById("emailInput");
 const messageInput = document.getElementById("messageInput");
 
+
+
 const nameError = document.getElementById("nameError");
 const emailError = document.getElementById("emailError");
+
 const messageError = document.getElementById("messageError");
 const formSuccess = document.getElementById("formSuccess");
 

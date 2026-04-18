@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Omar Alshehri | Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -14,14 +13,14 @@
         <h2>Omar Alshehri</h2>
 
         <div class="nav-actions">
-            <button id="themeToggleBtn" type="button" class="btn-small">🌙 </button>
+            <button id="themeToggleBtn" type="button" class="btn-small">🌙</button>
         </div>
 
         <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
-            <li><a href="#extras">Extras</a></li>
+            <li><a href="#inspiration">Inspiration</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -29,14 +28,20 @@
     <!-- about -->
     <section id="about">
         <h1>About Me</h1>
-        <p>
-            Software Engineering student at King Fahd University of Petroleum & Minerals (KFUPM)
-            with an interest in web design and front-end development.
-        </p>
-        <p>
-            I work on personal web design and development projects, building clean and responsive websites
-            using HTML, CSS, and WordPress as a content management platform.
-        </p>
+
+        <div class="info-box">
+            <p>
+                Software Engineering student at King Fahd University of Petroleum & Minerals (KFUPM)
+                with an interest in web design and front-end development.
+            </p>
+            <p>
+                I work on personal web design and development projects, building clean and responsive websites
+                using HTML, CSS, JavaScript, React, and WordPress.
+            </p>
+            <p class="muted">
+                This portfolio highlights my projects, technical skills, and design inspiration sources.
+            </p>
+        </div>
     </section>
 
     <!-- projects -->
@@ -74,7 +79,6 @@
         <p id="projectsEmptyState" class="muted hidden">No projects found.</p>
 
         <div class="projects-container" id="projectsContainer">
-
             <div
                 class="project-card fade-in"
                 data-title="Velonweb Web Design Development Wordpress Startup Business"
@@ -106,13 +110,18 @@
                     <button type="button">Visit Website</button>
                 </a>
             </div>
-
         </div>
     </section>
 
     <!-- skills -->
     <section id="skills">
         <h1>Skills</h1>
+
+        <div class="info-box">
+            <p>
+                This section highlights some of the tools and skills I use in my web design and front-end work.
+            </p>
+        </div>
 
         <div class="skills-slider">
             <div class="skills-track">
@@ -137,26 +146,28 @@
         </div>
     </section>
 
-    <!-- SWE News -->
-    <section id="extras">
-        <h1>Software Engineering News</h1>
+    <!-- API section -->
+    <section id="inspiration">
+        <h1>Design Inspiration</h1>
 
-        <div class="project-card">
-            <p>Click to get a tech article.</p>
-
-            <button id="newsBtn" type="button">Get News</button>
-
-            <p id="newsLoading" class="muted hidden">Loading...</p>
-            <p id="newsError" class="error hidden"></p>
-            <div id="newsResult" class="fade-in"></div>
+        <div class="info-box">
+            <h3>How to use this section</h3>
+            <p>
+                Click the button below to load fresh design inspiration images from an external API.
+            </p>
+            <button id="inspirationBtn" type="button">Load Inspiration</button>
+            <p id="inspirationLoading" class="muted hidden">Loading design inspiration...</p>
+            <p id="inspirationError" class="error hidden"></p>
         </div>
+
+        <p id="inspirationEmpty" class="muted hidden">No inspiration images found.</p>
+
+        <div id="inspirationGrid" class="inspiration-grid"></div>
     </section>
 
     <!-- contact -->
     <section id="contact">
         <h1>Contact Me</h1>
-
-        
 
         <form id="contactForm" novalidate>
             <label for="nameInput">Name</label>
@@ -172,7 +183,7 @@
             <p id="messageError" class="error hidden"></p>
 
             <button type="submit">Send</button>
-            <p id="formSuccess" class="success hidden">Message sent successfully</p>
+            <p id="formSuccess" class="success hidden">Message sent successfully.</p>
         </form>
     </section>
 
