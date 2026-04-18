@@ -131,11 +131,11 @@ nav a.active {
 }
 
 .project-logo {
-  width: 90px;
-  height: auto;
-  display: block;
-  margin-bottom: 12px;
-  border-radius: 8px;
+  width: 35%;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 0px;
+  margin-bottom: 15px;
 }
 
 .muted {
@@ -243,7 +243,7 @@ button:hover {
 
   border-radius: 10px;
   border: 1px solid #eaeaea;
-  
+
   padding: 18px 0;
 }
 
