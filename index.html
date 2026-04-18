@@ -40,48 +40,75 @@
     </section>
 
     <!-- projects -->
-    <section id="projects">
-        <h1>Projects</h1>
+<section id="projects">
+    <h1>Projects</h1>
 
-        <div class="info-box">
-            <h3>How to use this section</h3>
-            <p>Use the search box below to filter the project cards while typing.</p>
+    <div class="info-box">
+        <h3>How to use this section</h3>
+        <p>Use the search box, category buttons, and sort menu to explore the project cards.</p>
 
-            <label for="projectSearch"><strong>Search Projects</strong></label>
-            <input id="projectSearch" type="text" placeholder="Type to filter projects..." />
-            <p class="muted">Example: web, therapy, wordpress</p>
+        <label for="projectSearch"><strong>Search Projects</strong></label>
+        <input id="projectSearch" type="text" placeholder="Type to filter projects..." />
+        <p class="muted">Example: web, therapy, wordpress</p>
+
+        <div class="filter-actions">
+            <strong>Filter by type</strong>
+            <div class="filter-buttons">
+                <button type="button" class="filter-btn active-filter" data-filter="all">All</button>
+                <button type="button" class="filter-btn" data-filter="web">Web</button>
+                <button type="button" class="filter-btn" data-filter="business">Business</button>
+                <button type="button" class="filter-btn" data-filter="healthcare">Healthcare</button>
+            </div>
         </div>
 
-        <p id="projectsEmptyState" class="muted hidden">No projects found.</p>
-
-        <div class="projects-container" id="projectsContainer">
-
-            <div class="project-card fade-in" data-title="Velonweb Web Design Development Wordpress Startup Business">
-                <img src="assets/images/velonweb-logo.png" alt="Velonweb logo" class="project-logo">
-
-                <h3>Velonweb – Web Design & Development</h3>
-                <p>
-                    Personal web design and development project focused on building clean, responsive WordPress websites
-                    for startups and small businesses.
-                </p>
-                <a href="https://velonweb.com/en/" target="_blank" rel="noopener noreferrer">
-                    <button type="button">Visit Website</button>
-                </a>
-            </div>
-
-            <div class="project-card fade-in" data-title="Shumos Care Physical Therapy Center Taif Website Responsive Design">
-                <h3>Shumos Care Physical Therapy Center</h3>
-                <p>
-                    Designed and developed the official website for a physical therapy center in Taif,
-                    focused on clear service presentation, user-friendly structure, and responsive design.
-                </p>
-                <a href="https://shumca.com/en/" target="_blank" rel="noopener noreferrer">
-                    <button type="button">Visit Website</button>
-                </a>
-            </div>
-
+        <div class="sort-box">
+            <label for="projectSort"><strong>Sort Projects</strong></label>
+            <select id="projectSort">
+                <option value="default">Default Order</option>
+                <option value="az">Title (A-Z)</option>
+                <option value="za">Title (Z-A)</option>
+            </select>
         </div>
-    </section>
+    </div>
+
+    <p id="projectsEmptyState" class="muted hidden">No projects found.</p>
+
+    <div class="projects-container" id="projectsContainer">
+
+        <div
+            class="project-card fade-in"
+            data-title="Velonweb Web Design Development Wordpress Startup Business"
+            data-category="web business"
+        >
+            <img src="assets/images/velonweb-logo.png" alt="Velonweb logo" class="project-logo">
+
+            <h3>Velonweb – Web Design & Development</h3>
+            <p>
+                Personal web design and development project focused on building clean, responsive WordPress websites
+                for startups and small businesses.
+            </p>
+            <a href="https://velonweb.com/en/" target="_blank" rel="noopener noreferrer">
+                <button type="button">Visit Website</button>
+            </a>
+        </div>
+
+        <div
+            class="project-card fade-in"
+            data-title="Shumos Care Physical Therapy Center Taif Website Responsive Design" 
+            data-category="web healthcare"
+        >
+            <h3>Shumos Care Physical Therapy Center</h3>
+            <p>
+                Designed and developed the official website for a physical therapy center in Taif,
+                focused on clear service presentation, user-friendly structure, and responsive design.
+            </p>
+            <a href="https://shumca.com/en/" target="_blank" rel="noopener noreferrer">
+                <button type="button">Visit Website</button>
+            </a>
+        </div>
+
+    </div>
+</section>
 
 <!-- SWE News -->
 <section id="extras">

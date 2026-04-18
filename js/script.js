@@ -19,7 +19,7 @@ function setActiveLink() {
 
   navLinks.forEach((link) => {
     link.classList.remove("active");
-    if (link.getAttribute("href")===`#${currentSectionId}`) {
+    if (link.getAttribute("href") === `#${currentSectionId}`) {
       link.classList.add("active");
     }
   });
@@ -29,18 +29,15 @@ window.addEventListener("scroll", setActiveLink);
 setActiveLink();
 
 
-// change theme 
+// Change theme
 const themeToggleBtn = document.getElementById("themeToggleBtn");
 
 function applyTheme(theme) {
-  if (theme ==="dark") {
+  if (theme === "dark") {
     document.body.classList.add("dark");
-
     if (themeToggleBtn) themeToggleBtn.textContent = "☀️ ";
-  } 
-  else {
+  } else {
     document.body.classList.remove("dark");
-
     if (themeToggleBtn) themeToggleBtn.textContent = "🌙 ";
   }
 }
@@ -57,40 +54,84 @@ if (themeToggleBtn) {
 }
 
 
-// the project filtering
+// Project filtering + sorting
 const projectSearch = document.getElementById("projectSearch");
 const projectsContainer = document.getElementById("projectsContainer");
 const projectsEmptyState = document.getElementById("projectsEmptyState");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projectSort = document.getElementById("projectSort");
 
-function filterProjects(term) {
-  const cards = projectsContainer.querySelectorAll(".project-card");
+let currentFilter = "all";
+
+function updateProjects() {
+  if (!projectsContainer) return;
+
+  const cards = Array.from(projectsContainer.querySelectorAll(".project-card"));
+  const searchTerm = projectSearch ? projectSearch.value.trim().toLowerCase() : "";
+  const sortValue = projectSort ? projectSort.value : "default";
+
   let visibleCount = 0;
 
   cards.forEach((card) => {
     const title = (card.getAttribute("data-title") || "").toLowerCase();
-    const matches = title.includes(term.toLowerCase());
+    const category = (card.getAttribute("data-category") || "").toLowerCase();
 
-    card.style.display = matches ? "" : "none";
-    if (matches) visibleCount++;
+    const matchesSearch = title.includes(searchTerm);
+    const matchesFilter =
+      currentFilter === "all" || category.includes(currentFilter);
+
+    const shouldShow = matchesSearch && matchesFilter;
+    card.style.display = shouldShow ? "" : "none";
+
+    if (shouldShow) visibleCount++;
   });
 
+  const visibleCards = cards.filter((card) => card.style.display !== "none");
+
+  if (sortValue === "az") {
+    visibleCards.sort((a, b) => {
+      const aTitle = a.querySelector("h3").textContent.toLowerCase();
+      const bTitle = b.querySelector("h3").textContent.toLowerCase();
+      return aTitle.localeCompare(bTitle);
+    });
+  } else if (sortValue === "za") {
+    visibleCards.sort((a, b) => {
+      const aTitle = a.querySelector("h3").textContent.toLowerCase();
+      const bTitle = b.querySelector("h3").textContent.toLowerCase();
+      return bTitle.localeCompare(aTitle);
+    });
+  }
+
+  visibleCards.forEach((card) => projectsContainer.appendChild(card));
+
   if (projectsEmptyState) {
-    if (visibleCount === 0) {
-      projectsEmptyState.classList.remove("hidden");
-    } else {
-      projectsEmptyState.classList.add("hidden");
-    }
+    projectsEmptyState.classList.toggle("hidden", visibleCount !== 0);
   }
 }
 
-if (projectSearch && projectsContainer) {
-  projectSearch.addEventListener("input", (e) => {
-    filterProjects(e.target.value.trim());
+if (projectSearch) {
+  projectSearch.addEventListener("input", updateProjects);
+}
+
+if (projectSort) {
+  projectSort.addEventListener("change", updateProjects);
+}
+
+if (filterButtons.length) {
+  filterButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach((btn) => btn.classList.remove("active-filter"));
+      button.classList.add("active-filter");
+      currentFilter = button.getAttribute("data-filter");
+      updateProjects();
+    });
   });
 }
 
+updateProjects();
 
-//API fetch
+
+// API fetch
 const newsBtn = document.getElementById("newsBtn");
 const newsLoading = document.getElementById("newsLoading");
 const newsError = document.getElementById("newsError");
